@@ -1,12 +1,11 @@
-#include "struct_sort.h";
-#include <stdio>;
-#include <ctype.h>
+#include "struct_sort.h"
+#include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char*argv[]){
+int main(int argc, char*argv[]) {
 
     Person data[NUM_PEOPLE];// Holds array of structs that represent each person.
-    File *filePointer; // A pointer to a file intended for the file input.
+    FILE *filePointer; // A pointer to a file intended for the file input.
     char buffer[256];// buffer that holds a singe line at a time.
 
     //Check if the correct number of arguments passed is correct

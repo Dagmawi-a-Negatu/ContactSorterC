@@ -38,7 +38,7 @@ typedef struct Person{
     int phoneNumber;                                                            
 }Person;
 
-#define NUM_PEOPLE 100;
+#define NUM_PEOPLE 100
 
 #endif //End of include guard
 
