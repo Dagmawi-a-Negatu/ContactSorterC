@@ -1,5 +1,7 @@
 #include "struct_sort.h"
 #include <stdio.h>
+#include <ctype.h>
+#include <string.h>
 #include <stdlib.h>
 
 int main(int argc, char*argv[]) {
@@ -29,8 +31,7 @@ int main(int argc, char*argv[]) {
 
         //No leading whitesapces
         if(!(isspace((unsigned char)line[0]))){
-
-            return ;
+            return;
         }
 
         int originalLength = strlen(line);//Original length of array
@@ -56,13 +57,13 @@ int main(int argc, char*argv[]) {
         
         //Remove trailing white spaces with terminating null character
         line[j] = '\0';
-        }
+    }
 
     //Buffer holds each line of multiple characters from input file 
-    while(fgets(buffer, sizeof(buffer), filePointer != NULL){
+    while(fgets(buffer, sizeof(buffer), filePointer) != NULL) {
         
         trimLeadingWhitespace(buffer);
-        //Use this assuming we have no white leading spaces
-        sscanf(buffer, "%s", "%s", "%d" "%s" "%s", "%s", 
-        "%s", "%d", "%f", 
+        printf("%s", buffer);
+    }
+}
 
