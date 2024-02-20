@@ -1,5 +1,5 @@
 
-//struct_sort.h
+//st8ruct_sort.h
 #ifndef STRUCT_SORT_H
 #define STRUCT_SORT_H
 
@@ -27,7 +27,7 @@ typedef struct Address{
 *Fields:                                                                       
 *Fields:                                                                       
 *  - firstName: a character representing the person's first name.              
-*  - lastNsame: a character representing the person's last name.               
+*  - lastName: a character representing the person's last name.               
 *  - Address: a struct representing the person's address information.          
 *  - phoneNumber: an integer representing the person's phone number.           
 */                                                                             
@@ -39,6 +39,17 @@ typedef struct Person{
 }Person;
 
 #define NUM_PEOPLE 100
+
+/**
+ *Function prototype for checkArgs()
+*/
+int checkArgs(int argc);
+
+
+/**
+ *Function prototype for trimLeadingWhitespace()
+*/
+void trimLeadingWhitespace(char *line);
 
 #endif //End of include guard
 
