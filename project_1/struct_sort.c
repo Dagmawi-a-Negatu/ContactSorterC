@@ -4,36 +4,61 @@
 #include <string.h>
 #include <stdlib.h>
 
+
 int main(int argc, char*argv[]) {
 
-    Person data[NUM_PEOPLE];        // Holds array of structs that represent each person.
-    char buffer[256];               // buffer that holds a singe line at a time.
+    Person data[NUM_PEOPLE];// Holds array of structs that represent each person.
+    char buffer[256];// buffer that holds a singe line at a time.
+    
 
     //Check if the number of arguments passed is correct
     checkArgs(argc);
     
     //Attempt to open the input file
-    FILE *filePointer;      // A pointer to a file intended for the file input.
+    FILE *filePointer;      // A pointer to a file for the file input.
     filePointer  = fopen(argv[1], "r");
     if (filePointer == NULL) {
         perror("Error opening input file");
         exit(1);
     }
+
+
+
     while (fgets(buffer, sizeof(buffer), filePointer) != NULL) {
-        trimLeadingWhitespace(buffer);
-        printf("%s\n", buffer);
-        printf("-----------------\n");
-    }
-    
-    
-    //Buffer holds each line of multiple characters from input file 
-    //while(fgets(buffer, sizeof(buffer), filePointer) != NULL) {
         
-        //trimLeadingWhitespace(buffer);
-        //printf("%s", buffer);
-    //}
-    
+        //Clearling all clear spaces with null terminating character
+        trimLeadingWhitespace(buffer);
+       
+        //Write the contents of buffer to each person record
+        readFields(buffer, data);
+    }
+
 }
+
+
+void readFields(char line[], Person data[]){
+    
+    int size = 0; 
+
+    //Load each fields into a new person struct
+    sscanf(line, "%[^,], %[^,], %[^,], %[^,], %[^,], %[^,], %s",
+    data[size].firstName, data[size].lastName,
+    data[size].address.streetAddress, data[size].address.city,
+    data[size].address.state, data[size].address.zipCode, 
+    data[size].phoneNumber);
+        
+    printf("%s", data[size].phoneNumber);
+
+    
+    //update size for populated persons in data of structs
+    size++;
+}
+
+
+
+
+void bubbleSort()
+
 
 
 

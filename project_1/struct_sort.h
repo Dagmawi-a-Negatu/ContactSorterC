@@ -14,11 +14,11 @@
  *   - state: a character representing the person's state.                      
  *   - zipCode: an integer representing the person's zip code.                  
  */                                                                             
-typedef struct Address{                                                                         
-    char streetAddress;                                                         
-    char city;                                                                  
-    char state;                                                                 
-    int zipCode;                                                                
+typedef struct{                                                                         
+    char streetAddress[50];                                                         
+    char city[50];                                                                  
+    char state[50];                                                                 
+    char zipCode[50];                                                                
 }Address;                                                                       
                                                                                 
 /**                                                                             
@@ -31,11 +31,11 @@ typedef struct Address{
 *  - Address: a struct representing the person's address information.          
 *  - phoneNumber: an integer representing the person's phone number.           
 */                                                                             
-typedef struct Person{                                                                         
-    char firstName;                                                             
-    char lastName;                                                              
+typedef struct {                                                                         
+    char firstName[50];                                                             
+    char lastName[50];                                                              
     Address address;                                                            
-    int phoneNumber;                                                            
+    char phoneNumber[50];                                                            
 }Person;
 
 #define NUM_PEOPLE 100
@@ -47,9 +47,14 @@ int checkArgs(int argc);
 
 
 /**
- *Function prototype for trimLeadingWhitespace()
+ *Function prototype for trimLeadingWhitespace
 */
 void trimLeadingWhitespace(char *line);
+
+/**
+ * Function prototype for readFields 
+ */
+void readFields(char line[], Person data[]);
 
 #endif //End of include guard
 
