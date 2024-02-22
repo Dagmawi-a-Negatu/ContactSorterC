@@ -22,42 +22,40 @@ int main(int argc, char*argv[]) {
         exit(1);
     }
 
-
-
+    int size = 0;
     while (fgets(buffer, sizeof(buffer), filePointer) != NULL) {
+        
         
         //Clearling all clear spaces with null terminating character
         trimLeadingWhitespace(buffer);
-       
+
         //Write the contents of buffer to each person record
-        readFields(buffer, data);
+        readFields(buffer, data, &size);
     }
 
+    //printf("%s", data);
 }
 
 
-void readFields(char line[], Person data[]){
-    
-    int size = 0; 
-
+void readFields(char line[], Person data[], int *size){
     //Load each fields into a new person struct
     sscanf(line, "%[^,], %[^,], %[^,], %[^,], %[^,], %[^,], %s",
-    data[size].firstName, data[size].lastName,
-    data[size].address.streetAddress, data[size].address.city,
-    data[size].address.state, data[size].address.zipCode, 
-    data[size].phoneNumber);
-        
-    printf("%s", data[size].phoneNumber);
+    data[*size].firstName, data[*size].lastName,
+    data[*size].address.streetAddress, data[*size].address.city,
+    data[*size].address.state, data[*size].address.zipCode, 
+    data[*size].phoneNumber);
 
-    
     //update size for populated persons in data of structs
-    size++;
+    (*size)++;
 }
 
 
 
+void bubbleSort(Person data[]) {
+    int size = 0;
+    //printf("%s", data[size]);
 
-void bubbleSort()
+}
 
 
 

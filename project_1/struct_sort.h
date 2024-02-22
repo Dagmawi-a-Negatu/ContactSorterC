@@ -54,7 +54,13 @@ void trimLeadingWhitespace(char *line);
 /**
  * Function prototype for readFields 
  */
-void readFields(char line[], Person data[]);
+void readFields(char line[], Person data[], int *);
+
+/**
+ * Function prototype for bubbleSort
+ */
+void bubbleSort(Person data[]);
+
 
 #endif //End of include guard
 
