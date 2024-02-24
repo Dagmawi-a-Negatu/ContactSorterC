@@ -1,15 +1,13 @@
 #include "struct_sort.h"
-#include <stdio.h>
 #include <ctype.h>
 #include <string.h>
 #include <stdlib.h>
-
 
 int main(int argc, char*argv[]) {
 
     Person data[NUM_PEOPLE];// Holds array of structs that represent each person.
     char buffer[256];// buffer that holds a singe line at a time.
-    
+    int size = 0;//size of populated persons in data array
 
     //Check if the number of arguments passed is correct
     checkArgs(argc);
@@ -22,7 +20,7 @@ int main(int argc, char*argv[]) {
         exit(1);
     }
 
-    int size = 0;
+    
     while (fgets(buffer, sizeof(buffer), filePointer) != NULL) {
         
         
@@ -33,14 +31,16 @@ int main(int argc, char*argv[]) {
         readFields(buffer, data, &size);
     }
     
-    printf("%s, %s\n%d", data[0].lastName, data[1].lastName, strcmp(data[0].lastName, data[1].lastName));
-    printf("\n=======================================");
     bubbleSort(data, size);
 
-
-    for (int i = 0; i < size; i++) {
-        printf("\n%s, %s, %s, %s\n", data[i].firstName, data[i].lastName, data[i].address.streetAddress, data[i].address.city, data[i].address.state, data[i].address.zipCode, data[i].phoneNumber);
+    FILE *file = fopen(argv[2], "w"); // Open the file for writing
+    if (!file) {
+        perror("Failed to open file");
+        exit(1);
     }
+
+
+    writeToFile(data, size, file);
 }
 
 
@@ -80,9 +80,27 @@ void convertLastToLower(Person data[], int size) {
     //strcasecmp
 }
 
-void writeToFile(Person item) {
-    printf("%s", item.firstName);
+void writeToFile(Person item[], int size, FILE  *file) {
+    for (int i = 0; i < size; i++) {
+        
+        //Load each fields into a new person struct                                 
+        fprintf(file, "%s, %s, %s, %s, %s, %s, %s",                
+        item[i].firstName, item[i].lastName,                                
+        item[i].address.streetAddress, item[i].address.city,                
+        item[i].address.state, item[i].address.zipCode,                     
+        item[i].phoneNumber);                                                   
+        fprintf(file, "\n");
+    }
+   
+    char buffer[1024];                                                          
+    while (fgets(buffer, sizeof(buffer), file) != NULL) {                   
+        printf("%s", buffer);                                                   
+        printf("%s", "I am not writing to the file");                           
+    }                                                                           
+                                                                                
+    fclose(file); 
 }
+
 
 void swap(Person *person1, Person *person2) {
     Person temp = *person1;

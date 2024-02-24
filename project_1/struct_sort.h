@@ -2,7 +2,7 @@
 //st8ruct_sort.h
 #ifndef STRUCT_SORT_H
 #define STRUCT_SORT_H
-
+#include <stdio.h>
 /**                                                                             
  * Struct Name: Address                                                         
  * Description: Represents an address for person struct.                        
@@ -75,7 +75,7 @@ void convertLastToLower(Person data[], int size);
 /**
  * Function prototype for writeToFile
  */
-void writeToFile(Person item);
+void writeToFile(Person item[], int size, FILE  *file);
 
 
 #endif //End of include guard
