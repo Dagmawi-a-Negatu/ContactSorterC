@@ -32,8 +32,11 @@ int main(int argc, char*argv[]) {
         //Write the contents of buffer to each person record
         readFields(buffer, data, &size);
     }
-
-    //printf("%s", data);
+    convertLastToUpper(data, size);
+    //printf("%s", data[0].lastName);     // converted to upper
+    printf("%s, %s\n%d", data[0].lastName, data[1].lastName, strcmp(data[0].lastName, data[1].lastName));
+    printf("\n=======================================");
+    bubbleSort(data, size);
 }
 
 
@@ -44,17 +47,48 @@ void readFields(char line[], Person data[], int *size){
     data[*size].address.streetAddress, data[*size].address.city,
     data[*size].address.state, data[*size].address.zipCode, 
     data[*size].phoneNumber);
-
     //update size for populated persons in data of structs
     (*size)++;
 }
 
 
 
-void bubbleSort(Person data[]) {
-    int size = 0;
-    //printf("%s", data[size]);
 
+void convertLastToUpper(Person data[], int size) {
+    for (int i = 0; i < size; i++) {        // For every struct in the Person struct array
+        for (int j = 0; data[i].lastName[j] != '\0'; j++) {     // For every character in each Person structs lastname
+            if (islower(data[i].lastName[j])) {
+                data[i].lastName[j] = toupper(data[i].lastName[j]);     // Convert all lowercase characters to uppercase
+            }
+        }
+    }
+    //strcasecmp
+}
+
+void writeToFile(Person item) {
+    printf("%s", item.firstName);
+}
+
+void swap(Person *person1, Person *person2) {
+    Person temp = *person1;
+    *person1 = *person2;
+    *person2 = temp;
+
+}
+void bubbleSort(Person data[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < (size - i - 1); j++) {
+        // > 0 indicates the lastName field from the person object in data[0] comes after the lastName of the same type object in data[1]
+        // < 0 indicates the lastName field from the person object in data[0] comes before the lastName of the same type object in data[1]
+        if (strcmp(data[j].lastName, data[j+1].lastName) > 0) {     // if lastNames out of order
+            Person temp = data[j];
+            swap(&data[j], &data[j + 1]);
+        }
+        }
+    }
+    for (int i = 0; i < size; i++) {
+        printf("\n%s, %s, %s, %s\n", data[i].firstName, data[i].lastName, data[i].address.streetAddress, data[i].address.city, data[i].address.state, data[i].address.zipCode, data[i].phoneNumber);
+    }
 }
 
 

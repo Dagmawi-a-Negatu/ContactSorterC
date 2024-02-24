@@ -23,7 +23,7 @@ typedef struct{
                                                                                 
 /**                                                                             
 *Struct Name: Person                                                           
-*Descritpion: Represents a person in the input/output file;                    
+*Description: Represents a person in the input/output file;                    
 *Fields:                                                                       
 *Fields:                                                                       
 *  - firstName: a character representing the person's first name.              
@@ -36,7 +36,7 @@ typedef struct {
     char lastName[50];                                                              
     Address address;                                                            
     char phoneNumber[50];                                                            
-}Person;
+}Person;    
 
 #define NUM_PEOPLE 100
 
@@ -59,10 +59,15 @@ void readFields(char line[], Person data[], int *);
 /**
  * Function prototype for bubbleSort
  */
-void bubbleSort(Person data[]);
+void bubbleSort(Person data[], int size);
 
+/**
+ * Function prototype for convertlastToUpper
+ */
+void convertLastToUpper(Person data[], int size);
 
+/**
+ * Function prototype for writeToFile
+ */
+void writeToFile(Person item);
 #endif //End of include guard
-
-
-
