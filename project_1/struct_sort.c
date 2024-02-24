@@ -75,15 +75,21 @@ void swap(Person *person1, Person *person2) {
     *person2 = temp;
 
 }
+
 void bubbleSort(Person data[], int size) {
     for (int i = 0; i < size - 1; i++) {
         for (int j = 0; j < (size - i - 1); j++) {
         // > 0 indicates the lastName field from the person object in data[0] comes after the lastName of the same type object in data[1]
         // < 0 indicates the lastName field from the person object in data[0] comes before the lastName of the same type object in data[1]
-        if (strcmp(data[j].lastName, data[j+1].lastName) > 0) {     // if lastNames out of order
-            Person temp = data[j];
-            swap(&data[j], &data[j + 1]);
-        }
+            if (strcasecmp(data[j].lastName, data[j+1].lastName) > 0) {     // if lastNames out of order
+                swap(&data[j], &data[j + 1]);  
+            }
+
+            else if (strcasecmp(data[j].lastName, data[j+1].lastName) == 0) {        // if last name is the same
+                if (strcasecmp(data[j].firstName, data[j+1].firstName) > 0) {       // if first name is out of order
+                    swap(&data[j], &data[j + 1]);  
+                }
+            }
         }
     }
     for (int i = 0; i < size; i++) {
