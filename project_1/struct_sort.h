@@ -67,7 +67,15 @@ void bubbleSort(Person data[], int size);
 void convertLastToUpper(Person data[], int size);
 
 /**
+ * Function prototype for convertlastToLower
+ */
+void convertLastToLower(Person data[], int size);
+
+
+/**
  * Function prototype for writeToFile
  */
 void writeToFile(Person item);
+
+
 #endif //End of include guard

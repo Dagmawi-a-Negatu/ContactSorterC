@@ -32,11 +32,15 @@ int main(int argc, char*argv[]) {
         //Write the contents of buffer to each person record
         readFields(buffer, data, &size);
     }
-    convertLastToUpper(data, size);
-    //printf("%s", data[0].lastName);     // converted to upper
+    
     printf("%s, %s\n%d", data[0].lastName, data[1].lastName, strcmp(data[0].lastName, data[1].lastName));
     printf("\n=======================================");
     bubbleSort(data, size);
+
+
+    for (int i = 0; i < size; i++) {
+        printf("\n%s, %s, %s, %s\n", data[i].firstName, data[i].lastName, data[i].address.streetAddress, data[i].address.city, data[i].address.state, data[i].address.zipCode, data[i].phoneNumber);
+    }
 }
 
 
@@ -59,6 +63,17 @@ void convertLastToUpper(Person data[], int size) {
         for (int j = 0; data[i].lastName[j] != '\0'; j++) {     // For every character in each Person structs lastname
             if (islower(data[i].lastName[j])) {
                 data[i].lastName[j] = toupper(data[i].lastName[j]);     // Convert all lowercase characters to uppercase
+            }
+        }
+    }
+    //strcasecmp
+}
+
+void convertLastToLower(Person data[], int size) {
+    for (int i = 0; i < size; i++) {        // For every struct in the Person struct array
+        for (int j = 0; data[i].lastName[j] != '\0'; j++) {     // For every character in each Person structs lastname
+            if (isupper(data[i].lastName[j])) {
+                data[i].lastName[j] = tolower(data[i].lastName[j]);     // Convert all lowercase characters to uppercase
             }
         }
     }
@@ -91,9 +106,6 @@ void bubbleSort(Person data[], int size) {
                 }
             }
         }
-    }
-    for (int i = 0; i < size; i++) {
-        printf("\n%s, %s, %s, %s\n", data[i].firstName, data[i].lastName, data[i].address.streetAddress, data[i].address.city, data[i].address.state, data[i].address.zipCode, data[i].phoneNumber);
     }
 }
 
