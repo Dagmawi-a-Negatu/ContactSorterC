@@ -161,7 +161,7 @@ void trimLeadingWhitespace(char *line) {
         line[j] = '\0';
     }
 
-int checkArgs(int argc) {
+void checkArgs(int argc) {
     if(argc != 3){
         printf("Usage: <contacts.txt> <sorted_contacts.txt>");
         exit(1);

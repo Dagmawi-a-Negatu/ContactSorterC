@@ -43,7 +43,7 @@ typedef struct {
 /**
  *Function prototype for checkArgs()
 */
-int checkArgs(int argc);
+void checkArgs(int argc);
 
 
 /**
