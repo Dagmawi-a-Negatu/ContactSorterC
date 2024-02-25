@@ -60,9 +60,20 @@ FILE* openFile(char* argv[]) {
 }
 
 
+/**
+ * Reads individual fields from a single line and stores them in a Person struct.
+ *
+ * This function parses a single line of text expected to contain comma-separated values
+ * corresponding to the fields of a Person struct. The size variable is incremented
+ * to reflect the addition of a new Person record.
+ * @param line A character array containing the comma-separated values to be parsed.
+ * @param data An array of Person structs where the parsed data will be stored.
+ * @param size A pointer to an integer that keeps track of the number of populated entries
+ * in the data array.
+ */
 void readFields(char line[], Person data[], int *size){
-    //Load each fields into a new person struct
-    sscanf(line, "%[^,], %[^,], %[^,], %[^,], %[^,], %[^,], %s",
+    // Parsing the line and loading each field into a new Person struct
+    sscanf(line, "%[^,], %[^,], %[^,], %[^,], %[^,], %[^,], %s",//Read until scansets reached
     data[*size].firstName, data[*size].lastName,
     data[*size].address.streetAddress, data[*size].address.city,
     data[*size].address.state, data[*size].address.zipCode, 
@@ -92,31 +103,26 @@ void writeToFile(Person item[], int size, char *argv[]) {
     for (int i = 0; i < size; i++) {
         
         //Load each fields into a new person struct                                 
-        fprintf(file, "%s, %s, %s, %s, %s, %s, %s",                
+        fprintf(file, "%s, %s, %s, %s, %s, %s, %s", //Write until each scanset reached               
         item[i].firstName, item[i].lastName,                                
         item[i].address.streetAddress, item[i].address.city,                
         item[i].address.state, item[i].address.zipCode,                     
         item[i].phoneNumber);                                                   
         fprintf(file, "\n");
-    }
-   
-    char buffer[1024];                                                          
-    while (fgets(buffer, sizeof(buffer), file) != NULL) {                   
-        printf("%s", buffer);                                                                            
-    }                                                                           
+    }                                                                     
                                                                                 
     fclose(file); 
 }
 
-    /**
-     * Helper function to swap two variables. The function takes two
-     * pointers and creates a temp variable for the dereferenced value
-     * of the first pointer. The function then swaps the same type of value
-     * for person1 and person2 using the temp variable to prevent loss of
-     * the value
-     * @param Person *person1: Pointer to the first Person object
-     * @param Person *person2: Pointer to the second Person object
-    */
+/**
+* Helper function to swap two variables. The function takes two
+* pointers and creates a temp variable for the dereferenced value
+* of the first pointer. The function then swaps the same type of value
+* for person1 and person2 using the temp variable to prevent loss of
+* the value
+* @param Person *person1: Pointer to the first Person object
+* @param Person *person2: Pointer to the second Person object
+*/
 void swap(Person *person1, Person *person2) {
     Person temp = *person1;
     *person1 = *person2;
@@ -155,7 +161,19 @@ void bubbleSort(Person data[], int size) {
 
 
 
-
+/**
+ * Removes leading whitespace characters from the given string.
+ *
+ * This function shifts all characters in the string to the left to overwrite
+ * leading whitespace characters, then null-terminates the string after the
+ * last non-whitespace character. It operates directly on the input string.
+ *
+ * @param line A pointer to the character array (string) to be trimmed. This
+ * string is modified in place.
+ *
+ * @note This function does not remove trailing whitespace characters.
+ * @note The function assumes that the input string is properly null-terminated.
+ */
 void trimLeadingWhitespace(char *line) {
         //No leading whitesapces
         if(!(isspace((unsigned char)line[0]))) {
