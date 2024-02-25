@@ -63,14 +63,14 @@ FILE* openFile(char* argv[]) {
 
 
 /**
- * Reads individual fields from a single line and stores them in a Person struct.
- *
+ * Reads individual fields from a single line and stores them in a person_t struct.
+ * 
  * This function parses a single line of text expected to contain comma-separated values
- * corresponding to the fields of a Person struct. The size variable is incremented
- * to reflect the addition of a new Person record.
- * @param line A character array containing the comma-separated values to be parsed.
- * @param data An array of Person structs where the parsed data will be stored.
- * @param size A pointer to an integer that keeps track of the number of populated entries
+ * corresponding to the fields of a person_t struct. The size variable is incremented
+ * to reflect the addition of a new person record.
+ * @param char line[]: A character array containing the comma-separated values to be parsed.
+ * @param person_t data: An array of person_t structs where the parsed data will be stored.
+ * @param int *size: A pointer to an integer that keeps track of the number of populated entries
  * in the data array.
  */
 void readFields(char line[], person_t data[], int *size){
@@ -86,12 +86,12 @@ void readFields(char line[], person_t data[], int *size){
 
 
 /**
- * Writes data from a Person struct array to a file provided by the second argument
+ * Writes data from a person_T struct array to a file provided by the second argument
  * given to the program. A file pointer is created using the write mode before
- * a loop starts over the Person struct array until a contact is reached for
+ * a loop starts over the person_t struct array until a contact is reached for
  * which no fields have been initialized. Each iteration assigns values
  * from the input to the Person objects relevant fields.
- * @param Person item[]: Person struct array to be written to the file
+ * @param person_t item[]: person_t struct array to be written to the file
  * @param int size: Size representing each Person for which fields have been initialized
  * @param char *argv[]: List of arguments supplied to the program
 */
@@ -122,8 +122,8 @@ void writeToFile(person_t item[], int size, char *argv[]) {
 * of the first pointer. The function then swaps the same type of value
 * for person1 and person2 using the temp variable to prevent loss of
 * the value
-* @param Person *person1: Pointer to the first Person object
-* @param Person *person2: Pointer to the second Person object
+* @param person_t *person1: Pointer to the first Person object
+* @param person_T *person2: Pointer to the second Person object
 */
 void swap(person_t *person1, person_t *person2) {
     person_t temp = *person1;
@@ -132,16 +132,16 @@ void swap(person_t *person1, person_t *person2) {
 }
 
 /**
- * Completes a bubble sort of the Person struct array for every contact for
+ * Completes a bubble sort of the person_t struct array for every contact for
  * which fields have been initialized for. Sorting is completed by looping through
- * every item except the last in the Person struct array then again looping for every item
+ * every item except the last in the person_t struct array then again looping for every item
  * up until a completed sort has been reached. strcasecmp is used to indicate regardless of case
  * whether the last name of one person precedes another. If the lastName of the current item
  * in the iteration comes after the last name of the next item in the iteration it will
  * swap the data using the swap() function. If the names are equal it will do the sort for that
  * item based on the first name instead.
- * @param Person data[]: A Person struct array to be sorted
- * @param: int size: Number of Persons in the data array for which fields have been initialized
+ * @param person_t data[]: A person_t struct array to be sorted
+ * @param: int size: Number of persons in the data array for which fields have been initialized
  **/
 void bubbleSort(person_t data[], int size) {
     for (int i = 0; i < size - 1; i++) {
@@ -170,7 +170,7 @@ void bubbleSort(person_t data[], int size) {
  * leading whitespace characters, then null-terminates the string after the
  * last non-whitespace character. It operates directly on the input string.
  *
- * @param line A pointer to the character array (string) to be trimmed. This
+ * @param char *line: A pointer to the character array (string) to be trimmed. This
  * string is modified in place.
  *
  * @note This function does not remove trailing whitespace characters.
