@@ -13,6 +13,7 @@
  * @param char *argv[]: List of arguments provided to the program
  * @return 0: Indicates successful termination of program
 */
+
 int main(int argc, char *argv[]) {
 
     Person data[NUM_PEOPLE];        // Holds array of structs that represent each person.
@@ -43,7 +44,10 @@ int main(int argc, char *argv[]) {
 }
 
 /**
- * Returns a pointer to the contents of a file
+ * Opens a file based off of the first parameter supplied to the program and returns a pointer
+ * to the contents of the file. If the contents are null it returns an error and ends the program
+ * @param char *argv[]: List of arguments supplied to the program
+ * @return File *filePointer: A pointer to the contents of the read file
 */
 FILE* openFile(char* argv[]) {
     FILE *filePointer;      // A pointer to a file for the file input.
@@ -68,7 +72,16 @@ void readFields(char line[], Person data[], int *size){
 }
 
 
-
+/**
+ * Writes data from a Person struct array to a file provided by the second argument
+ * given to the program. A file pointer is created using the write mode before
+ * a loop starts over the Person struct array until a contact is reached for
+ * which no fields have been initialized. Each iteration assigns values
+ * from the input to the Person objects relevant fields.
+ * @param Person item[]: Person struct array to be written to the file
+ * @param int size: Size representing each Person for which fields have been initialized
+ * @param char *argv[]: List of arguments supplied to the program
+*/
 void writeToFile(Person item[], int size, char *argv[]) {
     FILE *file = fopen(argv[2], "w"); // Open the file for writing
     if (!file) {
@@ -95,14 +108,33 @@ void writeToFile(Person item[], int size, char *argv[]) {
     fclose(file); 
 }
 
-
+    /**
+     * Helper function to swap two variables. The function takes two
+     * pointers and creates a temp variable for the dereferenced value
+     * of the first pointer. The function then swaps the same type of value
+     * for person1 and person2 using the temp variable to prevent loss of
+     * the value
+     * @param Person *person1: Pointer to the first Person object
+     * @param Person *person2: Pointer to the second Person object
+    */
 void swap(Person *person1, Person *person2) {
     Person temp = *person1;
     *person1 = *person2;
     *person2 = temp;
-
 }
 
+/**
+ * Completes a bubble sort of the Person struct array for every contact for
+ * which fields have been initialized for. Sorting is completed by looping through
+ * every item except the last in the Person struct array then again looping for every item
+ * up until a completed sort has been reached. strcasecmp is used to indicate regardless of case
+ * whether the last name of one person precedes another. If the lastName of the current item
+ * in the iteration comes after the last name of the next item in the iteration it will
+ * swap the data using the swap() function. If the names are equal it will do the sort for that
+ * item based on the first name instead.
+ * @param Person data[]: A Person struct array to be sorted
+ * @param: int size: Number of Persons in the data array for which fields have been initialized
+ **/
 void bubbleSort(Person data[], int size) {
     for (int i = 0; i < size - 1; i++) {
         for (int j = 0; j < (size - i - 1); j++) {
@@ -155,6 +187,10 @@ void trimLeadingWhitespace(char *line) {
         line[j] = '\0';
     }
 
+/**
+ * Checks whether arguments are correctly supplied to the program
+ * @param argc: Number of arguments supplied to the program
+*/
 void checkArgs(int argc) {
     if(argc != 3){
         printf("Usage: <contacts.txt> <sorted_contacts.txt>");
