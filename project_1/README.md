@@ -1,6 +1,6 @@
 # Contact Sorting Program README
 Authors: Dagmawi Negatu and Nicholas Buchanan
-Date of submission: 26 February 2024
+Date of submission: 26 February, 2024
 Project One: Structs and File I/O in C
 
 ## Overview
@@ -70,6 +70,6 @@ the input file name (for unsorted contacts)
 and the output file name (where sorted contacts will be saved).
 
 ```bash
-gcc main.c -o contactsort
-./contactsort contacts.txt sorted_contacts.txt
+gcc -o struct_sort struct_sort.c
+./struct contacts.txt sorted_contacts.txt
 

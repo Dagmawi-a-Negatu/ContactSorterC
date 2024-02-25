@@ -1,3 +1,5 @@
+
+
 #include "struct_sort.h"
 #include <ctype.h>
 #include <string.h>
@@ -16,7 +18,7 @@
 
 int main(int argc, char *argv[]) {
 
-    Person data[NUM_PEOPLE];        // Holds array of structs that represent each person.
+    person_t data[NUM_PEOPLE];        // Holds array of structs that represent each person.
     char buffer[256];       // Buffer that holds a single line at a time.
     int size = 0;       // Size of populated persons in data array
  
@@ -60,7 +62,7 @@ FILE* openFile(char* argv[]) {
 }
 
 
-void readFields(char line[], Person data[], int *size){
+void readFields(char line[], person_t data[], int *size){
     //Load each fields into a new person struct
     sscanf(line, "%[^,], %[^,], %[^,], %[^,], %[^,], %[^,], %s",
     data[*size].firstName, data[*size].lastName,
@@ -82,7 +84,7 @@ void readFields(char line[], Person data[], int *size){
  * @param int size: Size representing each Person for which fields have been initialized
  * @param char *argv[]: List of arguments supplied to the program
 */
-void writeToFile(Person item[], int size, char *argv[]) {
+void writeToFile(person_t item[], int size, char *argv[]) {
     FILE *file = fopen(argv[2], "w"); // Open the file for writing
     if (!file) {
         perror("Failed to open file");
@@ -117,8 +119,8 @@ void writeToFile(Person item[], int size, char *argv[]) {
      * @param Person *person1: Pointer to the first Person object
      * @param Person *person2: Pointer to the second Person object
     */
-void swap(Person *person1, Person *person2) {
-    Person temp = *person1;
+void swap(person_t *person1, person_t *person2) {
+    person_t temp = *person1;
     *person1 = *person2;
     *person2 = temp;
 }
@@ -135,7 +137,7 @@ void swap(Person *person1, Person *person2) {
  * @param Person data[]: A Person struct array to be sorted
  * @param: int size: Number of Persons in the data array for which fields have been initialized
  **/
-void bubbleSort(Person data[], int size) {
+void bubbleSort(person_t data[], int size) {
     for (int i = 0; i < size - 1; i++) {
         for (int j = 0; j < (size - i - 1); j++) {
         // > 0 indicates the lastName field from the person object in data[0] comes after the lastName of the same type object in data[1]

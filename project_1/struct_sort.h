@@ -19,10 +19,10 @@ typedef struct{
     char city[50];                                                                  
     char state[50];                                                                 
     char zipCode[50];                                                                
-}Address;                                                                       
+}address;                                                                       
                                                                                 
 /**                                                                             
-*Struct Name: Person                                                           
+*Struct Name: person_t                                                     
 *Description: Represents a person in the input/output file;                    
 *Fields:                                                                       
 *Fields:                                                                       
@@ -34,9 +34,9 @@ typedef struct{
 typedef struct {                                                                         
     char firstName[50];                                                             
     char lastName[50];                                                              
-    Address address;                                                            
+    address address;                                                            
     char phoneNumber[50];                                                            
-}Person;    
+}person_t;   
 
 #define NUM_PEOPLE 100
 
@@ -54,17 +54,17 @@ void trimLeadingWhitespace(char *line);
 /**
  * Function prototype for readFields 
  */
-void readFields(char line[], Person data[], int *);
+void readFields(char line[], person_t data[], int *);
 
 /**
  * Function prototype for bubbleSort
  */
-void bubbleSort(Person data[], int size);
+void bubbleSort(person_t data[], int size);
 
 /**
  * Function prototype for writeToFile
  */
-void writeToFile(Person item[], int size, char *argv[]);
+void writeToFile(person_t item[], int size, char *argv[]);
 
 /**
  * Function prototype for openFile
