@@ -62,20 +62,14 @@ void readFields(char line[], Person data[], int *);
 void bubbleSort(Person data[], int size);
 
 /**
- * Function prototype for convertlastToUpper
- */
-void convertLastToUpper(Person data[], int size);
-
-/**
- * Function prototype for convertlastToLower
- */
-void convertLastToLower(Person data[], int size);
-
-
-/**
  * Function prototype for writeToFile
  */
-void writeToFile(Person item[], int size, FILE  *file);
+void writeToFile(Person item[], int size, char *argv[]);
+
+/**
+ * Function prototype for openFile
+*/
+FILE* openFile(char* argv[]);
 
 
 #endif //End of include guard

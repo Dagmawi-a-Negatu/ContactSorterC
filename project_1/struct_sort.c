@@ -5,42 +5,36 @@
 
 int main(int argc, char*argv[]) {
 
-    Person data[NUM_PEOPLE];// Holds array of structs that represent each person.
-    char buffer[256];// buffer that holds a singe line at a time.
-    int size = 0;//size of populated persons in data array
-
-    //Check if the number of arguments passed is correct
-    checkArgs(argc);
+    Person data[NUM_PEOPLE];        // Holds array of structs that represent each person.
+    char buffer[256];       // Buffer that holds a single line at a time.
+    int size = 0;       // Size of populated persons in data array
+ 
+    // Check if the number of arguments passed is correct
+    checkArgs(argc);        
     
-    //Attempt to open the input file
+    // Attempt to open the input file
+    FILE *filePointer = openFile(argv);     
+ 
+    // While 
+    while (fgets(buffer, sizeof(buffer), filePointer) != NULL) {
+        //Clearing all clear spaces with null terminating character
+        trimLeadingWhitespace(buffer);
+        //Write the contents of buffer to each person record
+        readFields(buffer, data, &size);
+    }
+    // Use bubble sort to organize data based on last name/first name if last names are equal
+    bubbleSort(data, size);     
+    writeToFile(data, size, argv);
+}
+
+FILE* openFile(char* argv[]) {
     FILE *filePointer;      // A pointer to a file for the file input.
     filePointer  = fopen(argv[1], "r");
     if (filePointer == NULL) {
         perror("Error opening input file");
         exit(1);
     }
-
-    
-    while (fgets(buffer, sizeof(buffer), filePointer) != NULL) {
-        
-        
-        //Clearling all clear spaces with null terminating character
-        trimLeadingWhitespace(buffer);
-
-        //Write the contents of buffer to each person record
-        readFields(buffer, data, &size);
-    }
-    
-    bubbleSort(data, size);
-
-    FILE *file = fopen(argv[2], "w"); // Open the file for writing
-    if (!file) {
-        perror("Failed to open file");
-        exit(1);
-    }
-
-
-    writeToFile(data, size, file);
+    return filePointer;
 }
 
 
@@ -57,30 +51,13 @@ void readFields(char line[], Person data[], int *size){
 
 
 
-
-void convertLastToUpper(Person data[], int size) {
-    for (int i = 0; i < size; i++) {        // For every struct in the Person struct array
-        for (int j = 0; data[i].lastName[j] != '\0'; j++) {     // For every character in each Person structs lastname
-            if (islower(data[i].lastName[j])) {
-                data[i].lastName[j] = toupper(data[i].lastName[j]);     // Convert all lowercase characters to uppercase
-            }
-        }
+void writeToFile(Person item[], int size, char *argv[]) {
+    FILE *file = fopen(argv[2], "w"); // Open the file for writing
+    if (!file) {
+        perror("Failed to open file");
+        exit(1);
     }
-    //strcasecmp
-}
 
-void convertLastToLower(Person data[], int size) {
-    for (int i = 0; i < size; i++) {        // For every struct in the Person struct array
-        for (int j = 0; data[i].lastName[j] != '\0'; j++) {     // For every character in each Person structs lastname
-            if (isupper(data[i].lastName[j])) {
-                data[i].lastName[j] = tolower(data[i].lastName[j]);     // Convert all lowercase characters to uppercase
-            }
-        }
-    }
-    //strcasecmp
-}
-
-void writeToFile(Person item[], int size, FILE  *file) {
     for (int i = 0; i < size; i++) {
         
         //Load each fields into a new person struct                                 
@@ -94,8 +71,7 @@ void writeToFile(Person item[], int size, FILE  *file) {
    
     char buffer[1024];                                                          
     while (fgets(buffer, sizeof(buffer), file) != NULL) {                   
-        printf("%s", buffer);                                                   
-        printf("%s", "I am not writing to the file");                           
+        printf("%s", buffer);                                                                            
     }                                                                           
                                                                                 
     fclose(file); 
