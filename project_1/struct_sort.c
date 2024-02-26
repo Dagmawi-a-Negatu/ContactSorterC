@@ -10,7 +10,7 @@
  * The trimmed buffer is thus passed into the readFields function that process each fields into the 
  * array of person_t structs using scanset. This file includes a modified implmentation of bubble sort that
  * sorts based on the first name and last name of each person_t struct. Finally, the sorted fields 
- * in an array of person_t structs are written to an output file name by the user.
+ * in an array of person_t structs are written to an output file named by the user.
  */
 
 
