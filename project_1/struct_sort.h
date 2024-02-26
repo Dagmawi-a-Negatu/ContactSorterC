@@ -1,5 +1,10 @@
+/**
+ * Dagmawi Negatu, Nicholas Buchannan
+ * struct_sort.h header file
+ * Declare the typedef of the person information, prototypes for all
+ * prototypes in dog.c, #defines for named constants and stdio library. 
+ */
 
-//st8ruct_sort.h
 #ifndef STRUCT_SORT_H
 #define STRUCT_SORT_H
 #include <stdio.h>
