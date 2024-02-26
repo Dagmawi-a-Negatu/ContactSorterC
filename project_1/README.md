@@ -1,9 +1,9 @@
 # Contact Sorting Program README
-Authors: Dagmawi Negatu and Nicholas Buchanan
+Author: Dagmawi Negatu and Nicholas Buchanan
 Date of submission: 26 February, 2024
-Project One: Structs and File I/O in C
+CS 352 Project One: Structs and File I/O in C
 
-## Overview
+## User View
 
 This program is built to process and sort contact information from a text file,
 organizing contacts by their last names and first names. 
@@ -67,7 +67,8 @@ Includes prototypes for all functions used with modularity.
 Compile the source file with the header file, 
 then execute the program with two arguments:
 the input file name (for unsorted contacts)
-and the output file name (where sorted contacts will be saved).
+and the output file name (where sorted contacts will be saved). You want to 
+enure that your excecutable is namde struct_sort.
 
 ```bash
 gcc -o struct_sort struct_sort.c
