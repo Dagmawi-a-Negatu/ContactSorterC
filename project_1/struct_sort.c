@@ -1,3 +1,18 @@
+/**
+ * Dagmawi Negatu, Nicholas Buchannan
+ * February 26/2024
+ * struct_sort.c header file
+ * Read in the contact information from a file, sort the contact information records, 
+ * and then write the sorted information to another file.
+ * In main, declare an array of person_t and buffer to hold each line from input file.
+ * Then, read in the file and load each line until the end of lines is reached. The readfields 
+ * function explicitly uses scanset with from stdio library. With the 
+ * TrimLeadingWhitespace function, strip all leading white spaces of the input file line by line.
+ * The trimmed buffer is thus passed into the readFields function that process each fields into the 
+ * array of person_t structs. This file includes a modified implmentation of bubble sort that
+ * sorts based on the first name and last name of each person_t struct. Finally, the sorted fields 
+ * in an array of person_t structs are written to an output file in the working directory.
+ */
 
 
 #include "struct_sort.h"
