@@ -70,6 +70,11 @@ the input file name (for unsorted contacts)
 and the output file name (where sorted contacts will be saved). You want to 
 enure that your excecutable is namde struct_sort.
 
+##Errors
+
+There are no known errors.
+
+
 ```bash
 gcc -o struct_sort struct_sort.c
 ./struct contacts.txt sorted_contacts.txt
