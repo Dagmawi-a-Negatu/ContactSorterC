@@ -73,11 +73,9 @@ enure that your excecutable is namde struct_sort.
 
 ```bash
 gcc -o struct_sort struct_sort.c
-./struct contacts.txt sorted_contacts.txt
+./struct_sort contacts.txt sorted_contacts.txt
 
 
-## Errors
-
-There are no known errors.
+Errors: There are no known errors.
 
 
