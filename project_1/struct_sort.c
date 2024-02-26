@@ -8,8 +8,9 @@
 
 /**
  * Driver function of the program. Instantiates Person struct array and buffer to hold each
- * line of input. Each line is read into the buffer and trimmed of leading whitespace. Data in the buffer is then
- * assigned to respective fields in the struct array for each line given by the input file. Once the struct array has been
+ * line of input. Each line is read into the buffer and trimmed of leading whitespace.
+ * Data in the buffer is then assigned to respective fields in the struct array for each line
+ * given by the input file. Once the struct array has been
  * filled the program sorts it using a bubble sort and writes the contents to a file
  * @param int argc: Number of arguments provided to the program
  * @param char *argv[]: List of arguments provided to the program
@@ -18,9 +19,9 @@
 
 int main(int argc, char *argv[]) {
 
-    person_t data[NUM_PEOPLE];        // Holds array of structs that represent each person.
-    char buffer[256];       // Buffer that holds a single line at a time.
-    int size = 0;       // Size of populated persons in data array
+    person_t data[NUM_PEOPLE]; // Holds array of structs that represent each person.
+    char buffer[256]; // Buffer that holds a single line at a time.
+    int size = 0;// Size of populated persons in data array
  
     // Check if the number of arguments passed is correct
     checkArgs(argc);        
@@ -28,7 +29,7 @@ int main(int argc, char *argv[]) {
     // Attempt to open the input file
     FILE *filePointer = openFile(argv);     
  
-    // While the buffer has a line from the file in it
+    // While the file has a line, load line by line to buffer
     while (fgets(buffer, sizeof(buffer), filePointer) != NULL) {
         // Clear all whitespace at the beginning of each line
         trimLeadingWhitespace(buffer);
@@ -146,15 +147,17 @@ void swap(person_t *person1, person_t *person2) {
 void bubbleSort(person_t data[], int size) {
     for (int i = 0; i < size - 1; i++) {
         for (int j = 0; j < (size - i - 1); j++) {
-        // > 0 indicates the lastName field from the person object in data[0] comes after the lastName of the same type object in data[1]
-        // < 0 indicates the lastName field from the person object in data[0] comes before the lastName of the same type object in data[1]
-            if (strcasecmp(data[j].lastName, data[j+1].lastName) > 0) {     // if lastNames out of order
-                swap(&data[j], &data[j + 1]);  
+        // > 0 indicates the lastName field from the person object in data[0]
+        //  comes after the lastName of the same type object in data[1]
+        // < 0 indicates the lastName field from the person object
+        //in data[0] comes before the lastName of the same type object in data[1]
+            if (strcasecmp(data[j].lastName, data[j+1].lastName) > 0) {
+                swap(&data[j], &data[j + 1]);//if lastnames out of order
             }
 
-            else if (strcasecmp(data[j].lastName, data[j+1].lastName) == 0) {        // if last name is the same
-                if (strcasecmp(data[j].firstName, data[j+1].firstName) > 0) {       // if first name is out of order
-                    swap(&data[j], &data[j + 1]);  
+            else if (strcasecmp(data[j].lastName, data[j+1].lastName) == 0) {     
+                if (strcasecmp(data[j].firstName, data[j+1].firstName) > 0) {       
+                    swap(&data[j], &data[j + 1]);//if last name the same or out of order
                 }
             }
         }
